@@ -46,7 +46,7 @@
 			var offsety = h.toppos;
 			var numtargets = Math.round((h.cheight/size)*params.coverage); //the coverage param used to manipulate how many targets to use
 			for(i=0;i<numtargets;i++){ //loop around
-				var tp = ((i*size/params.coverage)+offsety),lp = ((i*(size/params.coverage))+offsetx+(size/params.coverage)); //work out y & x
+				var tp = ((i*size/params.coverage)+offsety),lp = (-(i*params.diagAdjust)+(i*(size/params.coverage))+offsetx+(size/params.coverage)); //work out y & x
 				jQ(container).prepend("<div class='hover_target target_"+barnum+"' rel='"+barnum+"' style='z-index:"+zindex+";position:absolute;top:"+tp+"px;left:"+lp+"px;height:"+(size/params.coverage)+"px;width:"+(size*0.75)+"px;'>&nbsp;</div>"); //main block
 			}
 		},
@@ -75,7 +75,7 @@
 		}
 	};
 	
-	$.fn.diagonalaccordion.defaults = {start:false,acc_width:500, acc_height:300,bar_size:45, speed:'slow', accordion:'.accordion', coverage:4}; //the coverage var improves the amount of targets overlaying the bar - but effects performance
+	$.fn.diagonalaccordion.defaults = {start:false,acc_width:500, acc_height:300,bar_size:45, speed:'slow', accordion:'.accordion', coverage:4, diagAdjust: 3}; //the coverage var improves the amount of targets overlaying the bar - but effects performance, diagAdjust is a number that decreases the angle depth. 0 = 45 degree angle, 11 = no angle
 	var jQ = jQuery, params, elecount=0,H=$.diagonalaccordion.hash;
 	
 })(jQuery);
